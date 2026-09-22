@@ -17,9 +17,37 @@ void test_shr()
     ASSERT_EQUALS(0x00001234, shr(0x12345678, 16));
 }
 
+void test_sigma0()
+{
+    ASSERT_EQUALS(0x02004000, sigma0(0x00000001));
+    ASSERT_EQUALS(0x1FFFFFFF, sigma0(0xffffffff));
+}
+
+void test_sigma1()
+{
+    ASSERT_EQUALS(0x0000A000, sigma1(0x00000001));
+    ASSERT_EQUALS(0x003FFFFF, sigma1(0xffffffff));
+}
+
+void test_SIGMA0()
+{
+    ASSERT_EQUALS(0x40080400, SIGMA0(0x00000001));
+    ASSERT_EQUALS(0xffffffff, SIGMA0(0xffffffff));
+}
+
+void test_SIGMA1()
+{
+    ASSERT_EQUALS(0x04200080, SIGMA1(0x00000001));
+    ASSERT_EQUALS(0xffffffff, SIGMA1(0xffffffff));
+}
+
 int main()
 {
     RUN(test_rotr);
     RUN(test_shr);
+    RUN(test_sigma0);
+    RUN(test_sigma1);
+    RUN(test_SIGMA0);
+    RUN(test_SIGMA1);
     return 0;
 }

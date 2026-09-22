@@ -1,0 +1,3 @@
+BasedOnStyle: Google
+BreakBeforeBraces: Mozilla
+IndentWidth: 4
