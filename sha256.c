@@ -11,3 +11,10 @@ uint32_t sigma1(uint32_t A) { return rotr(A, 17) ^ rotr(A, 19) ^ shr(A, 10); }
 uint32_t SIGMA0(uint32_t A) { return rotr(A, 2) ^ rotr(A, 13) ^ rotr(A, 22); }
 
 uint32_t SIGMA1(uint32_t A) { return rotr(A, 6) ^ rotr(A, 11) ^ rotr(A, 25); }
+
+uint32_t Ch(uint32_t A, uint32_t B, uint32_t C) { return (A & B) ^ (~A & C); }
+
+uint32_t Maj(uint32_t A, uint32_t B, uint32_t C)
+{
+    return (A & B) ^ (A & C) ^ (B & C);
+}

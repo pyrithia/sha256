@@ -7,3 +7,5 @@ uint32_t sigma0(uint32_t);
 uint32_t sigma1(uint32_t);
 uint32_t SIGMA0(uint32_t);
 uint32_t SIGMA1(uint32_t);
+uint32_t Ch(uint32_t, uint32_t, uint32_t);
+uint32_t Maj(uint32_t, uint32_t, uint32_t);

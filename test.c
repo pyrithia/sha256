@@ -41,6 +41,22 @@ void test_SIGMA1()
     ASSERT_EQUALS(0xffffffff, SIGMA1(0xffffffff));
 }
 
+void test_Ch()
+{
+    ASSERT_EQUALS(0x22222222, Ch(0, 0x11111111, 0x22222222));
+    ASSERT_EQUALS(0x11111111, Ch(0xffffffff, 0x11111111, 0x22222222));
+    ASSERT_EQUALS(0x00f000f0, Ch(0x0f0f0f0f, 0xf0f0f0f0, 0x00ff00ff));
+}
+
+void test_Maj()
+{
+    ASSERT_EQUALS(0, Maj(0, 0, 0));
+    ASSERT_EQUALS(0xffffffff, Maj(0xffffffff, 0xffffffff, 0xffffffff));
+    ASSERT_EQUALS(0, Maj(0xffffffff, 0, 0));
+    ASSERT_EQUALS(0xffffffff, Maj(0xffffffff, 0xffffffff, 0));
+    ASSERT_EQUALS(0x00ff00ff, Maj(0x0f0f0f0f, 0xf0f0f0f0, 0x00ff00ff));
+}
+
 int main()
 {
     RUN(test_rotr);
@@ -49,5 +65,7 @@ int main()
     RUN(test_sigma1);
     RUN(test_SIGMA0);
     RUN(test_SIGMA1);
+    RUN(test_Ch);
+    RUN(test_Maj);
     return 0;
 }
