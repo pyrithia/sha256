@@ -1,3 +1,7 @@
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "sha256.h"
 #include "tinytest.h"
 
@@ -57,6 +61,26 @@ void test_Maj()
     ASSERT_EQUALS(0x00ff00ff, Maj(0x0f0f0f0f, 0xf0f0f0f0, 0x00ff00ff));
 }
 
+void test_sha256()
+{
+    ASSERT_STRING_EQUALS(
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        sha256((const uint8_t*)"", 0).hex);
+    ASSERT_STRING_EQUALS(
+        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+        sha256((const uint8_t*)"abc", 3).hex);
+    ASSERT_STRING_EQUALS(
+        "71c480df93d6ae2f1efad1447c66c9525e316218cf51fc8d9ed832f2daf18b73",
+        sha256((uint8_t*)"abcdefghijklmnopqrstuvwxyz", 26).hex);
+
+    char* million = malloc(1000000);
+    memset(million, 'a', 1000000);
+    ASSERT_STRING_EQUALS(
+        "cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0",
+        sha256((const uint8_t*)million, 1000000).hex);
+    free(million);
+}
+
 int main()
 {
     RUN(test_rotr);
@@ -67,5 +91,6 @@ int main()
     RUN(test_SIGMA1);
     RUN(test_Ch);
     RUN(test_Maj);
+    RUN(test_sha256);
     return 0;
 }
