@@ -1,0 +1,9 @@
+A SHA-256 hashing library implemented in C.
+
+Usage:
+Include sha256.h in your source file and compile sha256.c alongside your program.
+
+The sha256() function accepts a pointer to the message data and its length, returning a Digest struct containing the hexadecimal hash in its hex member.
+
+Testing:
+Run make to build the test executable, then ./test to run the tests.
