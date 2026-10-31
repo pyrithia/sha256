@@ -1,5 +1,3 @@
-#include <stdint.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "sha256.h"
